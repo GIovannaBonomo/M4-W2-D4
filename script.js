@@ -29,9 +29,11 @@
             const img = document.createElement("img")
             img.src = book.img
             img.className = "card-img-top"
+            img.style.height = "500px"
+            img.style.objectFit = "cover"
 
             const cardBody = document.createElement("div")
-            cardBody.className = "card-body row"  
+            cardBody.className = "card-body d-flex flex-column justify-content-between p-3"  
 
             const title = document.createElement("h5")
             title.className = "card-title mb-2 text-center"
@@ -40,6 +42,8 @@
             const prezzo = document.createElement('p')
             prezzo.className = "card-text text-center"
             prezzo.textContent = book.price
+            
+           
 
             const buttonAgg = document.createElement("button")
             buttonAgg.className = "btn btn-dark mt-auto"
@@ -48,8 +52,20 @@
             buttonAgg.addEventListener('click', function(){
                 listaCarrello.push(book)
                 card.classList.add('carrelloAgg')
-                creaCarrello(listaCarrello)
-            })
+                creaCarrello(listaCarrello) 
+            }) 
+            
+            const bottoneRimuovi= document.createElement('btn')
+            bottoneRimuovi.className = "btn mt-2"
+            bottoneRimuovi.textContent ="Salta"
+            bottoneRimuovi.addEventListener('click',() => {
+                col.remove()
+            })  
+
+            const info = document.createElement('a')
+            info.className = "btn"
+            info.textContent = "Maggiori Info"
+            info.href = "/dettagli.html?id=" + book.asin  
 
             col.appendChild(card)
             card.appendChild(img)
@@ -57,6 +73,8 @@
             cardBody.appendChild(title)
             cardBody.appendChild(prezzo)
             cardBody.appendChild(buttonAgg)        
+            cardBody.appendChild(bottoneRimuovi)
+            cardBody.appendChild(info)
             cardContainer.appendChild(col)
             
     })}
